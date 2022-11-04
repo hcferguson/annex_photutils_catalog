@@ -321,7 +321,7 @@ class PhotCat:
             self.matched_photcats[b][f"{kron_name}_mag"] = -2.5*np.log10(
                     self.matched_photcats[b][f"{kron_name}_flux"]) + ab_zpt
 
-    def fluxfrac_radii(fluxfracs,overwrite=False):
+    def fluxfrac_radii(self,fluxfracs,overwrite=False):
         for ff in fluxfracs:
            name = f"radius_kron{int(ff*100)}"
            if name not in self.my_photcolumns:
