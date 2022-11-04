@@ -47,9 +47,9 @@ for field in [1,2,3,6]:
     # Set up the catalog object separately for each field
     pc = PhotCat()
     # Read the JWST data
-    pc.read_jwst(field)
+    pc.read_jwst(paths.ceerspaths,field)
     # Read the HST data
-    pc.read_hst(field)
+    pc.read_hst(paths.ceerspaths,field)
 
     # Make the coadd
     pc.make_coadd()
