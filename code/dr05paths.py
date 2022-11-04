@@ -8,7 +8,7 @@ from astropy.wcs import WCS
 jwst_datadir = './inputs/dr0.5'
 hst_30mas_dir = './inputs/dr0.5'
 detmap_datadir = './inputs/detector_maps'
-kerneldir = './inputs/psfs'
+kernel_dir = './inputs/psfs'
 
 nircam1 = {
     'fitsfile': {
