@@ -2,7 +2,7 @@
 # Detection band is a weighted co-add of F200W + F277W + F356W
 
 __author__ = "Henry C. Ferguson, STScI"
-__version__ w "1.4.0"
+__version__ = "1.4.0"
 __license__ = "BSD3"
 
 # Version notes
