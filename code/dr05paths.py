@@ -5,9 +5,10 @@ from astropy.io import fits
 from astropy.wcs import WCS
 
 #################### Customize for each data set ####################
-jwst_datadir = './inputs'
-hst_30mas_dir = './inputs'
-kerneldir = './inputs'
+jwst_datadir = './inputs/dr0.5'
+hst_30mas_dir = './inputs/dr0.5'
+detmap_datadir = './inputs/detector_maps'
+kerneldir = './inputs/psfs'
 
 nircam1 = {
     'fitsfile': {
@@ -65,7 +66,7 @@ nircam1 = {
              'f125w': 5,
              'f140w': 5,
              'f160w': 5
-    'detmap': path.join(jwst_datadir,'ceers_nircam1_detmap.fits.gz')
+    'detmap': path.join(detmap_datadir,'ceers_nircam1_detmap.fits.gz')
     }
 
 nircam2 = {
@@ -128,7 +129,7 @@ nircam2 = {
              'f125w': 5,
              'f140w': 5,
              'f160w': 5
-    'detmap': path.join(jwst_datadir,'ceers_nircam2_detmap.fits.gz')
+    'detmap': path.join(detmap_datadir,'ceers_nircam2_detmap.fits.gz')
     }
 
 nircam3 = {
@@ -191,7 +192,7 @@ nircam3 = {
              'f125w': 5,
              'f140w': 5,
              'f160w': 5
-    'detmap': path.join(jwst_datadir,'ceers_nircam3_detmap.fits.gz')
+    'detmap': path.join(detmap_datadir,'ceers_nircam3_detmap.fits.gz')
     }
 
 
@@ -255,7 +256,7 @@ nircam6 = {
              'f125w': 5,
              'f140w': 5,
              'f160w': 5
-    'detmap': path.join(jwst_datadir,'ceers_nircam6_detmap.fits.gz')
+    'detmap': path.join(detmap_datadir,'ceers_nircam6_detmap.fits.gz')
     }
 
 
