@@ -264,7 +264,7 @@ nircam6 = {
     }
 
 
-ceerspaths = {1:nircam1, 2:nircam2, 3:nircam3, 4:nircam4}
+ceerspaths = {1:nircam1, 2:nircam2, 3:nircam3, 6:nircam6}
 
 psf_kernels = {
   'f105w': path.join(kernel_dir,'kernel_f277w_f105w.fits'),
