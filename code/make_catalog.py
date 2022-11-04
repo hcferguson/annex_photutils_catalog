@@ -101,12 +101,12 @@ class PhotCat:
                 wcs = WCS(hdu[bksub_ext].header)
                 sci = hdu[bksub_ext].data
                 mask = np.bitwise_and(hdu[mask_ext].data.astype(np.int32),1) == 1 # Mask regions of the detector
-                pixel_area_sr = hdu[sci_ext].header['PIXAR_SR']
+                pixel_area_sr = hdu[bksub_ext].header['PIXAR_SR']
                 nJy_conversion = 1*u.MJy.to(u.nJy)*pixel_area_sr
                 # Put the sci array into nJy per pixel
                 sci *= nJy_conversion
-                meta['PHOTMJSR'] = hdu[sci_ext].header['PHOTMJSR']
-                meta['PIXAR_SR'] = hdu[sci_ext].header['PIXAR_SR']
+                meta['PHOTMJSR'] = hdu[bksub_ext].header['PHOTMJSR']
+                meta['PIXAR_SR'] = hdu[bksub_ext].header['PIXAR_SR']
                 err = hdu[rms_ext].data
                 err *= nJy_conversion # convert to nJy per pixel
                 err_floor = np.percentile(err[~mask],99) # Set the pixels with 0 error to the 99th percentile
@@ -143,7 +143,7 @@ class PhotCat:
         paths = ceerspaths[field]
         maxerr = 1.e6
         for b in self.hst_bands:
-            sci_ext = paths['bksub_ext'][b]
+            bksub_ext = paths['bksub_ext'][b]
             rms_ext = paths['rms_ext'][b]
             mask_ext = paths['tiermask_ext'][b]
             with fits.open(paths['fitsfile'][b]) as hdu:
