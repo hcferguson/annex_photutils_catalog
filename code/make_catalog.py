@@ -100,7 +100,7 @@ class PhotCat:
             with fits.open(paths['fitsfile'][b]) as hdu:
                 wcs = WCS(hdu[bksub_ext].header)
                 sci = hdu[bksub_ext].data
-                mask = np.bitwise_and(hdu[mask_ext].data,1) == 1 # Mask regions of the detector
+                mask = np.bitwise_and(hdu[mask_ext].data.astype(np.int32),1) == 1 # Mask regions of the detector
                 pixel_area_sr = hdu[sci_ext].header['PIXAR_SR']
                 nJy_conversion = 1*u.MJy.to(u.nJy)*pixel_area_sr
                 # Put the sci array into nJy per pixel
@@ -149,7 +149,7 @@ class PhotCat:
             with fits.open(paths['fitsfile'][b]) as hdu:
                 wcs = WCS(hdu[bksub_ext].header)
                 sci = hdu[bksub_ext].data
-                mask = np.bitwise_and(hdu[mask_ext].data,1) == 1 # Mask regions of the detector
+                mask = np.bitwise_and(hdu[mask_ext].data.astype(np.int32),1) == 1 # Mask regions of the detector
                 sci = sci * self.hst_zeropoints[b] # Convert to nJy
                 err = hdu[rms_ext].data
                 meta = {}
