@@ -2,3 +2,7 @@
 	path = dr0.5_c0.1
 	url = ./dr0.5_c0.1
 	datalad-id = 5f295473-6b3f-4566-bcd9-d3079f3a8aa5
+[submodule "inputs/dr0.5"]
+	path = inputs/dr0.5
+	url = /Volumes/CEERS2/ceersdl/photutils_catalog/../dr0.5
+	datalad-id = d18e8163-e9a1-4b06-a5c0-7bf880f6745d
