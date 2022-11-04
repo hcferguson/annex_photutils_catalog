@@ -66,10 +66,13 @@ for field in [1,2,3,6]:
     pc.create_matched(paths.psf_kernels)
     pc.photometry_matched_bands()
     # Fraction of light radii
-    pc.fluxfrac_radii([0.2,0.5,0.8])
+    pc.fluxfrac_radii([0.2,0.5,0.8],pc.jwst_bands)
+    pc.fluxfrac_radii([0.2,0.5,0.8],pc.hst_bands)
     # Large Kron-aperture photometry
-    pc.extra_kron_photometry()
-    pc.extra_kron_matched_photometry()
+    pc.extra_kron_photometry(pc.jwst_bands)
+    pc.extra_kron_photometry(pc.hst_bands)
+    pc.extra_kron_matched_photometry(pc.jwst_bands)
+    pc.extra_kron_matched_photometry(pc.hst_bands)
 
     # Flag objects near an image border
     pc.flag_near_border(pc.jwst_bands)
