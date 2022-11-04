@@ -278,7 +278,7 @@ class PhotCat:
                    'equivalent_radius']):
         ''' Add extra columns after running photometry on the detect inage '''
         self.my_photcolumns += extra_columns
-        self.photcat_coadd.to_table(colums=self.my_photcolumns)
+        self.photometry_coadd.to_table(colums=self.my_photcolumns)
 
     def photometry_bands(self,bands):
         for b in bands:
