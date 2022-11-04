@@ -26,8 +26,8 @@ import dr05paths as paths
 from make_catalog import PhotCat
 
 # Input and output directory and filename suffix 
-indir = "./inputs"
-outdir= "./outputs"
+indir = "inputs"
+outdir= "outputs/dr0.5_c0.1"
 suffix = f"_dr0.5_c0.1"
 ################################################################################
 
