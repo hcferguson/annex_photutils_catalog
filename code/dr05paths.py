@@ -66,6 +66,7 @@ nircam1 = {
              'f125w': 5,
              'f140w': 5,
              'f160w': 5
+            },
     'detmap': path.join(detmap_datadir,'ceers_nircam1_detmap.fits.gz')
     }
 
@@ -129,6 +130,7 @@ nircam2 = {
              'f125w': 5,
              'f140w': 5,
              'f160w': 5
+            },
     'detmap': path.join(detmap_datadir,'ceers_nircam2_detmap.fits.gz')
     }
 
@@ -192,6 +194,7 @@ nircam3 = {
              'f125w': 5,
              'f140w': 5,
              'f160w': 5
+            },
     'detmap': path.join(detmap_datadir,'ceers_nircam3_detmap.fits.gz')
     }
 
@@ -256,6 +259,7 @@ nircam6 = {
              'f125w': 5,
              'f140w': 5,
              'f160w': 5
+            },
     'detmap': path.join(detmap_datadir,'ceers_nircam6_detmap.fits.gz')
     }
 
