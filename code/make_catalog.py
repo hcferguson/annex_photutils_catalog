@@ -8,7 +8,7 @@ __license__ = "BSD3"
 # Version notes
 # 1.0.1 -- save the coadd file
 # 1.3.0 -- Rewritten for CEERS v0.1
-# 1.3.0 -- Rewritten for CEERS dr0.5 -- added extra kron fluxes and flux radii routines
+# 1.4.0 -- Rewritten for CEERS dr0.5; extra kron fluxes and flux radii routines; revised read routines
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -86,7 +86,7 @@ class PhotCat:
 
     def read_jwst(self,ceerspaths,field):
         ''' paths is a dictionary of paths to all the files,
-            e.g. ceerspaths[1] from v07paths.py 
+            e.g. ceerspaths[1] from dr05paths.py 
         '''
     # Read in to NDData structures
         self.field = field
@@ -94,12 +94,12 @@ class PhotCat:
         maxerr = 1.e6
         for b in self.jwst_bands:
             meta = {}
-            sci_ext = paths['sci_ext'][b]
+            bksub_ext = paths['bksub_ext'][b]
             rms_ext = paths['rms_ext'][b]
             mask_ext = paths['tiermask_ext'][b]
-            with fits.open(paths['sci'][b]) as hdu:
-                wcs = WCS(hdu[sci_ext].header)
-                sci = hdu[sci_ext].data
+            with fits.open(paths['fitsfile'][b]) as hdu:
+                wcs = WCS(hdu[bksub_ext].header)
+                sci = hdu[bksub_ext].data
                 mask = np.bitwise_and(hdu[mask_ext].data,1) == 1 # Mask regions of the detector
                 pixel_area_sr = hdu[sci_ext].header['PIXAR_SR']
                 nJy_conversion = 1*u.MJy.to(u.nJy)*pixel_area_sr
@@ -107,13 +107,11 @@ class PhotCat:
                 sci *= nJy_conversion
                 meta['PHOTMJSR'] = hdu[sci_ext].header['PHOTMJSR']
                 meta['PIXAR_SR'] = hdu[sci_ext].header['PIXAR_SR']
-            with fits.open(paths['rms'][b]) as hdu:
                 err = hdu[rms_ext].data
                 err *= nJy_conversion # convert to nJy per pixel
                 err_floor = np.percentile(err[~mask],99) # Set the pixels with 0 error to the 99th percentile
                 err_floored = np.choose(err == 0., (err,err_floor))
                 err_floored = np.choose(np.isnan(err), (err_floored, maxerr))
-                #print(err_floor, err.max(), err_floored.min(), err_floored.max())
                 self.images[b] = NDData(sci*u.nJy,
                         InverseVariance(1/(err_floored)**2),
                         mask=mask, wcs=wcs, meta=meta)
@@ -136,35 +134,6 @@ class PhotCat:
                 self.matched_images[b] = convolve_fft(self.images[self.matching[b][0]],
                     self.matching_kernels[b],allow_huge=True)
 
-    def read_jwst_matched(self,ceerspaths,field,matched_ext=0):
-        self.field = field
-        paths = ceerspaths[field]
-        selt.matched_bands = list(paths['matched'].keys()) # Bands that were matched
-        maxerr = 1.e6
-        self.matched_images = {}
-        for b in paths['matched']:
-            sci_ext = paths['sci_ext'][b]
-            rms_ext = paths['rms_ext'][b]
-            mask_ext = paths['tiermask_ext'][b]
-            with fits.open(paths['matched'][b]) as hdu:
-                wcs = WCS(hdu[matched_ext].header)
-                matched_sci = hdu[matched_ext].data
-            with fits.open(paths['sci'][b]) as hdu:
-                pixel_area_sr = hdu[sci_ext].header['PIXAR_SR']
-                mask = np.bitwise_and(hdu[mask_ext].data,1) == 1 # Mask regions of the detector
-                matched_sci *= nJy_conversion
-            with fits.open(paths['rms'][b]) as hdu:
-                matched_err = hdu[rms_ext].data
-                matched_err *= nJy_conversion # convert to nJy per pixel
-                meta = {}
-                err_floor = np.percentile(err[~mask],99) # Set the pixels with 0 error to the 99th percentile
-                err_floored = np.choose(err == 0., (err,err_floor))
-                err_floored = np.choose(np.isnan(err), (err_floored, maxerr))
-                #print(err_floor, err.max(), err_floored.min(), err_floored.max())
-                self.matched_images[b] = NDData(matched_sci*u.nJy,
-                        InverseVariance(1/err_floored**2),
-                        mask=mask, wcs=wcs, meta=meta)
-
     def read_hst(self,ceerspaths,field):
         ''' paths is a dictionary of paths to all the files,
             e.g. ceerspaths[1] from v07paths.py 
@@ -174,15 +143,14 @@ class PhotCat:
         paths = ceerspaths[field]
         maxerr = 1.e6
         for b in self.hst_bands:
-            sci_ext = paths['sci_ext'][b]
+            sci_ext = paths['bksub_ext'][b]
             rms_ext = paths['rms_ext'][b]
             mask_ext = paths['tiermask_ext'][b]
-            with fits.open(paths['sci'][b]) as hdu:
-                wcs = WCS(hdu[sci_ext].header)
-                sci = hdu[sci_ext].data
+            with fits.open(paths['fitsfile'][b]) as hdu:
+                wcs = WCS(hdu[bksub_ext].header)
+                sci = hdu[bksub_ext].data
                 mask = np.bitwise_and(hdu[mask_ext].data,1) == 1 # Mask regions of the detector
                 sci = sci * self.hst_zeropoints[b] # Convert to nJy
-            with fits.open(paths['rms'][b]) as hdu:
                 err = hdu[rms_ext].data
                 meta = {}
                 err_floor = np.percentile(err[~mask],99) # Set the pixels with 0 error to the 99th percentile
