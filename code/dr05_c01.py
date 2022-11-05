@@ -33,12 +33,12 @@ suffix = f"_dr0.5_c0.1"
 
 
 # Set up the catalog object 
-pc = PhotCat()
+ppc = PhotCat()
 
 # If you wish to change any of these, set them and then
 # re-execute pc.populate_catalog_metadata *before* reading the images
 # Otherwise all the pixels will be in the catalog metadata
-pprint(pc.catalog_metadata)
+pprint(ppc.catalog_metadata)
 
 
 # Loop through the fields 
@@ -90,3 +90,7 @@ for field in [1,2,3,6]:
     pc.write_matched_photcat(outputdir=outdir,prefix=prefix,suffix=suffix)
     pc.dill_coadd_photometry(outputdir=outdir,prefix=prefix,suffix=suffix)
     pc.dill_segmap(outputdir=outdir,prefix=prefix,suffix=suffix)
+
+    # Don't know why I need to do this, but on the second iteration pc still has the attribute
+    # Maybe the global overrode the local?
+    del pc.my_photcolumns
