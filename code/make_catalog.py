@@ -304,7 +304,7 @@ class PhotCat:
         for b  in bands:
             self.photcats[b] = self.photometries[b].to_table(self.my_photcolumns)
             self.photcats[b][f"{kron_name}_mag"] = -2.5*np.log10(
-                    self.photcats[b][f"{kron_name}_flux"]) + ab_zpt
+                    self.photcats[b][f"{kron_name}_flux"]) + self.ab_zpt
 
     def extra_kron_matched_photometry(self,bands,kron_params=[4.,2.0,2.0],
                                        kron_name="kron4_2",overwrite=False):
@@ -317,7 +317,7 @@ class PhotCat:
         for b  in bands:
             self.photcats[b] = self.matched_photometries[b].to_table(self.my_photcolumns)
             self.matched_photcats[b][f"{kron_name}_mag"] = -2.5*np.log10(
-                    self.matched_photcats[b][f"{kron_name}_flux"]) + ab_zpt
+                    self.matched_photcats[b][f"{kron_name}_flux"]) + self.ab_zpt
 
     def fluxfrac_radii(self,fluxfracs,bands,overwrite=False):
         for ff in fluxfracs:
