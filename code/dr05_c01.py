@@ -41,7 +41,8 @@ ppc = PhotCat()
 pprint(ppc.catalog_metadata)
 
 if __name__ == "__main__":
-    field = sys.argv[1]
+    field = int(sys.argv[1])
+    print(f"field = {field}")
 
     # Read the files for field 1
     # Set up the catalog object separately for each field
