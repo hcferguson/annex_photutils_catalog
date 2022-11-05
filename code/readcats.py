@@ -12,19 +12,17 @@ def load_segm(data,filename):
     with bz2.BZ2File(filename, 'rb') as f:
        dill.load(data, f)
 
-@dataclass
 class CEERSCat:
-    version: str = 'dr0.5_c0.1'
-    catdir: str = 'outputs/dr0.5_c0.1'
-    fields: list = (1,2,3,6)
-    # Skipping f105w because it doesn't exist for all fields
-    bands:  list = ('f606w','f814w','f125w','f140w','f160w',
-                    'f115w','f150w','f200w','f277w','f356w','f410m','f444w')
-    refband: str = 'f277w'
-    ab_zpt: float = 31.4 # 1 nJy in ABMag
-
-
-    def __post_init__(self):
+    def __init__(self,catdir="outputs/dr0.5_c0.1",version='dr0.5_c0.1',fields=(1,2,3,6),
+         bands = ('f606w','f814w','f125w','f140w','f160w', 
+                 'f115w','f150w','f200w','f277w','f356w','f410m','f444w'),
+         refband = 'f277w'
+            ):
+        self.version = version
+        self.catdir = catdir
+        self.fields = fields
+        self.bands = bands
+        self.refband = refband
         self.phot = {} # Merged for all fields
         self.mphot = {} # Merged for all fields
         self.seg = {} # Separate for each field
@@ -43,6 +41,7 @@ class CEERSCat:
                 'f140w': 'f277w_f140w',
                 'f160w': 'f277w_f160w',
         }
+        self.ab_zpt = 31.4 # 1 nJy in ABMag
 
     def read_detcats(self):
         detcat = None
