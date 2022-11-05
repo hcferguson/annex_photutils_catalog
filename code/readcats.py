@@ -67,7 +67,7 @@ class CEERSCat:
             else:
                 photcat = vstack((photcat,cat))
         self.phot[band] = photcat
-        self.add_kron_mags(self.phot[band])
+        self.add_mags(self.phot[band])
 
     def read_matched_photcat_band(self,band):
         photcat = None
@@ -106,13 +106,15 @@ class CEERSCat:
                 for column in phot.colnames:
                     if column[-5:] == "_flux":
                         mphot[column] = phot[column] * (rphot[column]/mphot[column])
-            self.add_kron_mags(mphot)
+            self.add_mags(mphot)
 
-    def add_kron_mags(self,cat):
+    def add_mags(self,cat):
         for column in cat.colnames:
             if column[-5:] == "_flux":
                 fluxname = column[:-5]
                 cat[f"{fluxname}_mag"] = -2.5*np.log10(cat[column]) + self.ab_zpt
+                fractional_err =  np.absolute(cat[f"{fluxname}_fluxerr"]/cat[column])
+                cat[f"{fluxname}_magerr"] = (2.5/np.log(10.)) * fractional_err
 
     def read_all_cats(self):
         self.read_detcats()
