@@ -315,7 +315,7 @@ class PhotCat:
             self.my_photcolumns += [f"{kron_name}_flux"]
             self.my_photcolumns += [f"{kron_name}_fluxerr"]
         for b  in bands:
-            self.photcats[b] = self.matched_photometries[b].to_table(self.my_photcolumns)
+            self.matched_photcats[b] = self.matched_photometries[b].to_table(self.my_photcolumns)
             self.matched_photcats[b][f"{kron_name}_mag"] = -2.5*np.log10(
                     self.matched_photcats[b][f"{kron_name}_flux"]) + self.ab_zpt
 
