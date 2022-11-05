@@ -300,7 +300,6 @@ class PhotCat:
             _stuff = self.photometries[b].kron_photometry(kron_params,name=kron_name,overwrite=overwrite)
         if f"{kron_name}_flux" not in self.my_photcolumns:
             self.my_photcolumns += [f"{kron_name}_flux"]
-            self.my_photcolumns += [f"{kron_name}_mag"]
             self.my_photcolumns += [f"{kron_name}_fluxerr"]
         for b  in bands:
             self.photcats[b] = self.photometries[b].to_table(self.my_photcolumns)
@@ -314,7 +313,6 @@ class PhotCat:
                     kron_params,name=kron_name,overwrite=overwrite)
         if f"{kron_name}_flux" not in self.my_photcolumns:
             self.my_photcolumns += [f"{kron_name}_flux"]
-            self.my_photcolumns += [f"{kron_name}_mag"]
             self.my_photcolumns += [f"{kron_name}_fluxerr"]
         for b  in bands:
             self.photcats[b] = self.matched_photometries[b].to_table(self.my_photcolumns)
