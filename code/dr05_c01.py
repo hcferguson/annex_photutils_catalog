@@ -40,9 +40,9 @@ ppc = PhotCat()
 # Otherwise all the pixels will be in the catalog metadata
 pprint(ppc.catalog_metadata)
 
+if __name__ == "__main__":
+    field = sys.argv[1]
 
-# Loop through the fields 
-for field in [1,2,3,6]:
     # Read the files for field 1
     # Set up the catalog object separately for each field
     pc = PhotCat()
