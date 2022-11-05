@@ -71,8 +71,8 @@ for field in [1,2,3,6]:
     # Large Kron-aperture photometry
     pc.extra_kron_photometry(pc.jwst_bands)
     pc.extra_kron_photometry(pc.hst_bands)
-    pc.extra_kron_matched_photometry(pc.jwst_bands)
-    pc.extra_kron_matched_photometry(pc.hst_bands)
+    # Large Kron-aperture photometry for the matched images
+    pc.extra_kron_matched_photometry( list(pc.matched_images.keys()) )
 
     # Flag objects near an image border
     pc.flag_near_border(pc.jwst_bands)
