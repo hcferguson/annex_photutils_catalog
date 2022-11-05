@@ -21,6 +21,8 @@ class CEERSCat:
     bands:  list = ('f606w','f814w','f125w','f140w','f160w',
                     'f115w','f150w','f200w','f277w','f356w','f410m','f444w')
     refband: str = 'f277w'
+    ab_zpt: float = 31.4 # 1 nJy in ABMag
+
 
     def __post_init__(self):
         self.phot = {} # Merged for all fields
@@ -41,8 +43,6 @@ class CEERSCat:
                 'f140w': 'f277w_f140w',
                 'f160w': 'f277w_f160w',
         }
-        self.phot_columns = ['segment_flux','segment_fluxerr','kron_flux','kron_fluxerr']
-        self.mag_columns = ['kron_mag']
 
     def read_detcats(self):
         detcat = None
@@ -67,6 +67,7 @@ class CEERSCat:
             else:
                 photcat = vstack((photcat,cat))
         self.phot[band] = photcat
+        self.add_kron_mags(self.phot[band])
 
     def read_matched_photcat_band(self,band):
         photcat = None
@@ -81,6 +82,7 @@ class CEERSCat:
                 photcat = vstack((photcat,cat))
         self.mphot[band] = photcat
 
+
     def read_photcats(self):
         for b in self.bands:
             self.read_photcat_band(b)
@@ -91,8 +93,6 @@ class CEERSCat:
                 self.read_matched_photcat_band(b)
 
     def correct_to_reference_band(self):
-        self.phot_columns = ['segment_flux','segment_fluxerr','kron_flux','kron_fluxerr']
-        self.mag_columns = ['kron_mag']
         rphot = self.phot[self.refband] # Reference band catalog
         self.mphot[self.refband] = self.phot[self.refband]
         for b in self.matchbands:
@@ -103,10 +103,22 @@ class CEERSCat:
             # Multiply flux by the ratio of unconvolved/convolved reference band
             # Otherwise, matched photometry is already matched to the reference band
             if (b1 == self.refband):
-                for column in self.phot_columns:
-                    mphot[column] = phot[column] * (rphot[column]/mphot[column])
-                for column in self.mag_columns:
-                    mphot[column] = phot[column] -2.5*np.log10(rphot[column]/mphot[column])
+                for column in phot.colnames:
+                    if column[-5:] == "_flux":
+                        mphot[column] = phot[column] * (rphot[column]/mphot[column])
+            self.add_kron_mags(mphot)
+
+    def add_kron_mags(self,cat):
+        for column in cat.colnames:
+            if column[-5:] == "_flux":
+                fluxname = column[:-5]
+                cat[f"{fluxname}_mag"] = -2.5*np.log10(colunmn) + self.ab_zpt
+
+    def read_all_cats(self):
+        self.read_detcats()
+        self.read_photcats()
+        self.read_matched_photcats()
+        self.correct_to_reference_band()
 
     def read_seg_images(self):
         for f in self.fields:
