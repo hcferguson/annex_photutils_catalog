@@ -112,7 +112,7 @@ class CEERSCat:
         for column in cat.colnames:
             if column[-5:] == "_flux":
                 fluxname = column[:-5]
-                cat[f"{fluxname}_mag"] = -2.5*np.log10(colunmn) + self.ab_zpt
+                cat[f"{fluxname}_mag"] = -2.5*np.log10(column) + self.ab_zpt
 
     def read_all_cats(self):
         self.read_detcats()
