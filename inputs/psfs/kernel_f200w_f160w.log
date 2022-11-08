@@ -1,8 +1,0 @@
-2022-10-20 15:08:47,451 - pypher - INFO - Source PSF loaded: psf_f200w.fits
-2022-10-20 15:08:47,452 - pypher - INFO - Target PSF loaded: psf_f160w.fits
-2022-10-20 15:08:47,454 - pypher - INFO - Source PSF pixel scale: 0.03 arcsec
-2022-10-20 15:08:47,454 - pypher - INFO - Target PSF pixel scale: 0.03 arcsec
-2022-10-20 15:08:47,454 - pypher - INFO - Source PSF rotated by 0.00 degrees
-2022-10-20 15:08:47,454 - pypher - INFO - Target PSF rotated by 0.00 degrees
-2022-10-20 15:08:47,456 - pypher - INFO - Kernel computed using Wiener filtering and a regularisation parameter r = 1.00e-04
-2022-10-20 15:08:47,514 - pypher - INFO - Kernel saved in kernel_f200w_f160w.fits
