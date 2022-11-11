@@ -1,0 +1,13 @@
+who,ext,link
+kernel_f814w_f277w,fits,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/psfs/kernel_f814w_f277w.fits
+kernel_f277w_f410m,fits,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/psfs/kernel_f277w_f410m.fits
+kernel_f277w_f356w,fits,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/psfs/kernel_f277w_f356w.fits
+kernel_f606w_f277w,fits,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/psfs/kernel_f606w_f277w.fits
+kernel_f277w_f444w,fits,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/psfs/kernel_f277w_f444w.fits
+kernel_f277w_f125w,fits,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/psfs/kernel_f277w_f125w.fits
+kernel_f277w_f140w,fits,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/psfs/kernel_f277w_f140w.fits
+kernel_f115w_f277w,fits,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/psfs/kernel_f115w_f277w.fits
+kernel_f150w_f277w,fits,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/psfs/kernel_f150w_f277w.fits
+kernel_f277w_f160w,fits,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/psfs/kernel_f277w_f160w.fits
+kernel_f277w_f105w,fits,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/psfs/kernel_f277w_f105w.fits
+kernel_f200w_f277w,fits,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/psfs/kernel_f200w_f277w.fits

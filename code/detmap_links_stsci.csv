@@ -1,0 +1,5 @@
+who,ext,link
+ceers_nircam1_detmap,fits.gz,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/detector_maps/ceers_nircam1_detmap.fits.gz
+ceers_nircam2_detmap,fits.gz,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/detector_maps/ceers_nircam2_detmap.fits.gz
+ceers_nircam3_detmap,fits.gz,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/detector_maps/ceers_nircam3_detmap.fits.gz
+ceers_nircam6_detmap,fits.gz,https://www.stsci.edu/~ferguson/ceers/photutils_catalog/inputs/detector_maps/ceers_nircam6_detmap.fits.gz
