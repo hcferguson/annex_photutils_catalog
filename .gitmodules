@@ -6,3 +6,7 @@
 	path = inputs/detector_maps
 	url = ./inputs/detector_maps
 	datalad-id = 1e61f076-b6a3-4e44-8db6-0e817e4cea32
+[submodule "inputs/psfs"]
+	path = inputs/psfs
+	url = ./inputs/psfs
+	datalad-id = 380937f0-831f-4000-a024-00bf81384034
