@@ -2,3 +2,7 @@
 	path = inputs/dr0.5
 	url = /Volumes/CEERS2/ceersdl/photutils_catalog/../dr0.5
 	datalad-id = d18e8163-e9a1-4b06-a5c0-7bf880f6745d
+[submodule "inputs/detector_maps"]
+	path = inputs/detector_maps
+	url = ./inputs/detector_maps
+	datalad-id = 1e61f076-b6a3-4e44-8db6-0e817e4cea32
