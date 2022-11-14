@@ -1,1 +1,2 @@
 7c4460a5-3d5d-4b9e-a1b2-0534fbd0822b autoenable=true encryption=none externaltype=osf name=osf-storage node=9jga5 type=external timestamp=1668197904.576805s
+a2465764-0a0f-46f5-8d5e-d980bff9fadc encryption=none externaltype=rclone name=CEERS_google_drive prefix=annex-photutils_catalog rclone_layout=lower target=CEERS_google_drive type=external timestamp=1668458392.489621s
