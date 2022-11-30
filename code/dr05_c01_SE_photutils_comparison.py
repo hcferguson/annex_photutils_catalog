@@ -26,7 +26,12 @@ sys.path.append('/Volumes/CEERS2/ceersdl/photutils_catalog/code')
 import readcats
 
 def seband(band):
+    ''' Change filter names from f???w to F??? '''
     return band[:-1].upper()
+
+def ab(njy):
+    ''' Convert nano Jansky to AB magnitude '''
+    return -2.5*np.log10(njy) + 31.4
 
 def compare_colors(rc,secat,photutils_subset,se_subset,band0,band1='f277w'):
     ''' Compare photutils and SE colors '''
