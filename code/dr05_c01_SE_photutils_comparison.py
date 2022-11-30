@@ -115,5 +115,5 @@ if __name__ == "__main__":
     plt.savefig(path.join(outdir,"SE_photutils_dr0.5_c0.1_nircam_kron_color_comparison.pdf"))
 
     # HST colors 
-    plot_compare_colors(rc,secat,photutils_subset,se_subset,['f606w','f814w','f105w','f125w','f160w'])
+    plot_compare_colors(rc,secat,photutils_subset,se_subset,['f606w','f814w','f125w','f160w'])
     plt.savefig(path.join(outdir,"SE_photutils_dr0.5_c0.1_hst_kron_color_comparison.pdf"))
