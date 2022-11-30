@@ -103,7 +103,7 @@ if __name__ == "__main__":
     se_subset = select
     photutils_subset = idx[select]
     assert len(photutils_subset) == len(se_subset)
-    print(f"Matched photutils,SE: {len(photutils_subset)},{len(se_subset)}"}
+    print(f"Matched photutils,SE: {len(photutils_subset)},{len(se_subset)}")
 
     # NIRCam colors 
     plot_compare_colors(rc,secat,photutils_subset,se_subset,['f115w','f150w','f200w','f356w','f410m','f444w'])
